@@ -11,9 +11,21 @@
       margin-top: 50px;
     }
   </style>
+  <script>
+    async function fetchMessage() {
+      try {
+        const response = await fetch('https://wigenial.vercel.app/');
+        const message = await response.text();
+        document.getElementById('server-message').innerText = message;
+      } catch (error) {
+        document.getElementById('server-message').innerText = 'Error al conectar con el servidor.';
+      }
+    }
+    window.onload = fetchMessage;
+  </script>
 </head>
 <body>
   <h1>Hola bb, funcionando con GitHub Pages</h1>
-  <p>Este es un ejemplo simple desplegado en GitHub Pages.</p>
+  <p id="server-message">Cargando mensaje del servidor...</p>
 </body>
 </html>
