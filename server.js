@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.get('/', (req, res) => {
-  res.setHeader('Content-Type', 'text/html'); // Cambia el contenido a HTML
+  res.setHeader('Content-Type', 'text/html'); // Asegura que el contenido sea HTML
   res.send(`
     <!DOCTYPE html>
     <html lang="es">
@@ -32,11 +32,11 @@ app.get('/', (req, res) => {
       </script>
     </head>
     <body>
-      <h1>Hola bb, funcionando con GitHub Pages</h1>
+      <h1>Hola bb, funcionando con Vercel</h1>
       <p id="server-message">Cargando mensaje del servidor...</p>
     </body>
     </html>
-  `); // Envía el contenido HTML
+  `); // Envía el contenido HTML actualizado
 });
 
 app.listen(PORT, () => {
