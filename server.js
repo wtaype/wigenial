@@ -3,8 +3,40 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.get('/', (req, res) => {
-  res.setHeader('Content-Type', 'text/plain'); // Asegura que el contenido sea texto plano
-  res.send('Hola bb, funcionando con servidor');
+  res.setHeader('Content-Type', 'text/html'); // Cambia el contenido a HTML
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Wigenial</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin-top: 50px;
+        }
+      </style>
+      <script>
+        async function fetchMessage() {
+          try {
+            const response = await fetch('https://wigenial.vercel.app/');
+            const message = await response.text();
+            document.getElementById('server-message').innerText = message;
+          } catch (error) {
+            document.getElementById('server-message').innerText = 'Error al conectar con el servidor.';
+          }
+        }
+        window.onload = fetchMessage;
+      </script>
+    </head>
+    <body>
+      <h1>Hola bb, funcionando con GitHub Pages</h1>
+      <p id="server-message">Cargando mensaje del servidor...</p>
+    </body>
+    </html>
+  `); // Envía el contenido HTML
 });
 
 app.listen(PORT, () => {
